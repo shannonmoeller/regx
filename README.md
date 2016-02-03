@@ -56,7 +56,7 @@ const a = regx('gm')`
     ^  // start of line
     a+ // one or more 'a' characters
     $  // end of line
-`; // result: /^a$/gm
+`; // result: /^a+$/gm
 ```
 
 ### `regxTagFunction(strings, ...values) : String`
@@ -70,13 +70,13 @@ const a = rxgm`
     ^  // start of line
     a+ // one or more 'a' characters
     $  // end of line
-`; // result: /^a$/gm
+`; // result: /^a+$/gm
 
 const b = rxgm`
     ^  // start of line
     b+ // one or more 'a' characters
     $  // end of line
-`; // result: /^b$/gm
+`; // result: /^b+$/gm
 ```
 
 All whitespace at the beginning and end of lines is ignored. To match literal whitespace at the beginning or end of a line you must use a character set.
