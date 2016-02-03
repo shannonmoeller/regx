@@ -1,6 +1,6 @@
 {
   "name": "regx",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Tagged template string regular expression compiler.",
   "main": "dist/regx.js",
   "scripts": {
