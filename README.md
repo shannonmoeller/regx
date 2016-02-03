@@ -59,7 +59,7 @@ const a = regx('gm')`
 `; // result: /^a+$/gm
 ```
 
-### `regxTagFunction(strings, ...values) : String`
+### `regxTagFunction(strings, ...values) : RegExp`
 
 The functions returned by `regx()` may be cached and reused.
 
