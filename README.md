@@ -64,33 +64,33 @@ const a = regx('gm')`
 The functions returned by `regx()` may be cached and reused.
 
 ```js
-const rxgm = regx('gm');
+const rx = regx('gm');
 
-const a = rxgm`
+const a = rx`
     ^  // start of line
     a+ // one or more 'a' characters
     $  // end of line
 `; // result: /^a+$/gm
 
-const b = rxgm`
+const b = rx`
     ^  // start of line
     b+ // one or more 'a' characters
     $  // end of line
 `; // result: /^b+$/gm
 ```
 
-All whitespace at the beginning and end of lines is ignored. To match literal whitespace at the beginning or end of a line you must use a character set.
+All whitespace at the beginning and end of each line is ignored. To match literal whitespace at the beginning or end of a line you must use a character set.
 
 ```js
-const rxgm = regx('i');
+const rx = regx('i');
 
-const spaceBefore = rxgm`
-    [ ]foo
-`; // result: /[ ]foo/i
+const spaceBefore = rx`
+    [ ]foo bar
+`; // result: /[ ]foo bar/i
 
-const spaceAfter = rxgm`
-    foo[ ]
-`; // result: /foo[ ]/i
+const spaceAfter = rx`
+    foo bar[ ]
+`; // result: /foo bar[ ]/i
 ```
 
 ----
