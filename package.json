@@ -1,27 +1,31 @@
 {
   "name": "regx",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Tagged template string regular expression compiler.",
   "main": "dist/regx.js",
   "scripts": {
     "build": "browserify -t babelify -s regx src/regx.js -o dist/regx.js",
+    "pretest": "xo src/*.js test/*.js",
     "test": "npm run test-node && npm run test-browser && nyc report",
     "test-browser": "browserify -t babelify ./test/regx.js | browser-run | tap-difflet",
-    "test-node": "nyc -r lcov blue-tape test/regx.js | tap-difflet"
+    "test-node": "nyc -r lcov blue-tape test/regx.js | tap-difflet",
+    "watch": "watch 'npm test' src test -du"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/shannonmoeller/regx"
   },
   "keywords": [
-    "template",
+    "compiler",
+    "expression",
+    "regex",
+    "regexp",
+    "regular",
+    "rx",
     "string",
     "tag",
     "tagged",
-    "regular",
-    "expression",
-    "regexp",
-    "regex"
+    "template"
   ],
   "author": "Shannon Moeller <me@shannonmoeller.com> (http://shannonmoeller.com)",
   "license": "MIT",
@@ -38,9 +42,10 @@
     "blue-tape": "^0.1.11",
     "browser-run": "^3.0.8",
     "browserify": "^13.0.0",
-    "coverify": "^1.4.1",
     "nyc": "^5.5.0",
-    "tap-difflet": "^0.4.0"
+    "tap-difflet": "^0.4.0",
+    "watch": "^0.17.1",
+    "xo": "^0.12.1"
   },
   "babel": {
     "presets": [

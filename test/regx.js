@@ -1,24 +1,24 @@
 import test from 'blue-tape';
-import {rx} from '../src/regx';
+import regx from '../src/regx';
 
-test('should work', async assert => {
+test('should compile to a regexp', async assert => {
 	// flags on partials are ignored
 	const open = /\/\*\*/i;
 	const close = /\*\//m;
 
-	const expression = rx('gm')`
-		# Match a non-recursive block comment
+	const expression = regx('gm')`
+		// Match a non-recursive block comment
 		(
-			# Must be first thing on a line
+			// Must be first thing on a line
 			^[\t ]*
-			${open} # Trailing comment
+			${open} // Block opener
 			(
-				# Match any character including newlines (non-greedy)
+				// Match any character including newlines (non-greedy)
 				[\s\S]*?
 			)
-			${close}
+			${close} // Block closer
 		)
-		# Grab trailing newlines and discard them
+		// Grab trailing newlines and discard them
 		[\r\n]*
 	`;
 
@@ -26,5 +26,5 @@ test('should work', async assert => {
 });
 
 if (process.browser) {
-	test.onFinish(window.close);
+	test.onFinish(global.close);
 }

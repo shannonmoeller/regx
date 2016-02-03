@@ -1,13 +1,13 @@
-export function rx(flags) {
-	const trailingComments = /\s+#.*$/gm;
-	const surroundingWhitespace = /^\s+|\s+$/gm;
-	const literalNewlines = /[\r\n]/g;
+const trailingComments = /\s+\/\/.*$/gm;
+const surroundingWhitespace = /^\s+|\s+$/gm;
+const literalNewlines = /[\r\n]/g;
 
-	return ({raw: strings}, ...values) => {
+export default function regx(flags) {
+	return (strings, ...values) => {
 		function toPattern(pattern, rawString, i) {
-			var value = values[i];
+			let value = values[i];
 
-			if (value == null) {
+			if (value === null || value === undefined) {
 				return pattern + rawString;
 			}
 
@@ -18,7 +18,7 @@ export function rx(flags) {
 			return pattern + rawString + value;
 		}
 
-		const compiledPattern = strings
+		const compiledPattern = strings.raw
 			.reduce(toPattern, '')
 			.replace(trailingComments, '')
 			.replace(surroundingWhitespace, '')

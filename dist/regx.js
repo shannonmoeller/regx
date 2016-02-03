@@ -4,23 +4,21 @@
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.rx = rx;
-function rx(flags) {
-	var trailingComments = /\s+#.*$/gm;
-	var surroundingWhitespace = /^\s+|\s+$/gm;
-	var literalNewlines = /[\r\n]/g;
+exports.default = regx;
+var trailingComments = /\s+\/\/.*$/gm;
+var surroundingWhitespace = /^\s+|\s+$/gm;
+var literalNewlines = /[\r\n]/g;
 
-	return function (_ref) {
+function regx(flags) {
+	return function (strings) {
 		for (var _len = arguments.length, values = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
 			values[_key - 1] = arguments[_key];
 		}
 
-		var strings = _ref.raw;
-
 		function toPattern(pattern, rawString, i) {
 			var value = values[i];
 
-			if (value == null) {
+			if (value === null || value === undefined) {
 				return pattern + rawString;
 			}
 
@@ -31,7 +29,7 @@ function rx(flags) {
 			return pattern + rawString + value;
 		}
 
-		var compiledPattern = strings.reduce(toPattern, '').replace(trailingComments, '').replace(surroundingWhitespace, '').replace(literalNewlines, '');
+		var compiledPattern = strings.raw.reduce(toPattern, '').replace(trailingComments, '').replace(surroundingWhitespace, '').replace(literalNewlines, '');
 
 		return new RegExp(compiledPattern, flags);
 	};
