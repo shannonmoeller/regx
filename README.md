@@ -74,7 +74,7 @@ const a = rx`
 
 const b = rx`
     ^  // start of line
-    b+ // one or more 'a' characters
+    b+ // one or more 'b' characters
     $  // end of line
 `; // result: /^b+$/gm
 ```
