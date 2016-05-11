@@ -1,6 +1,6 @@
-const trailingComments = /\s+\/\/.*$/gm;
-const surroundingWhitespace = /^\s+|\s+$/gm;
-const literalNewlines = /[\r\n]/g;
+const RX_COMMENTS_TRAILING = /\s+\/\/.*$/gm;
+const RX_WHITESPACE_SURROUNDING = /^\s+|\s+$/gm;
+const RX_LINES_NEW = /[\r\n]/g;
 
 export default function regx(flags) {
 	return (strings, ...values) => {
@@ -20,9 +20,9 @@ export default function regx(flags) {
 
 		const compiledPattern = strings.raw
 			.reduce(toPattern, '')
-			.replace(trailingComments, '')
-			.replace(surroundingWhitespace, '')
-			.replace(literalNewlines, '');
+			.replace(RX_COMMENTS_TRAILING, '')
+			.replace(RX_WHITESPACE_SURROUNDING, '')
+			.replace(RX_LINES_NEW, '');
 
 		return new RegExp(compiledPattern, flags);
 	};
